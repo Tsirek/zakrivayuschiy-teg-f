@@ -26,7 +26,7 @@
   min-inline-size: 320px;
   min-block-size: 100dvb;
   font-family: var(--main-font), sans-serif;
-  font-variation-settings: 'wght' 400;
+  font-variation-settings: 'wght' var(--text-weight);
   background-image: repeating-linear-gradient(
       to bottom,
       var(--bg-color) 0px 2px,
@@ -44,6 +44,7 @@
     );
   background-size: cover;
   background-attachment: fixed;
+  background-color: var(--bg-color);
 }
 
 .header {
@@ -71,10 +72,12 @@
   margin-block-end: 9px;
 }
 
-.header__title {
+.header__title,
+.header__title:focus {
   font-family: var(--accent-font), sans-serif;
   font-size: clamp(3.0625rem, 2.7104rem + 1.5023vw, 4.0625rem);
   text-decoration: none;
+  outline: none;
 }
 
 .header__description {
@@ -104,6 +107,7 @@
   position: relative;
   border: 2px solid var(--border-color);
   border-block-start: none;
+  overflow: hidden;
   aspect-ratio: 1 / 1;
 }
 
@@ -113,31 +117,31 @@
   height: 100%;
 }
 
-.image-grayscale {
+.filter-grayscale {
   filter: grayscale(75%);
 }
 
-.image-saturate {
+.filter-saturate {
   filter: saturate(400%);
 }
 
-.image-huerotate {
+.filter-huerotate {
   filter: hue-rotate(30deg);
 }
 
-.image-invert {
+.filter-invert {
   filter: invert(90%);
 }
 
-.image-sepia {
+.filter-sepia {
   filter: sepia(90%);
 }
 
-.image-blur {
+.filter-blur {
   filter: blur(10px);
 }
 
-.image-huerotate-opacity {
+.filter-huerotate-opacity {
   filter: hue-rotate(100deg) opacity(70%);
 }
 
@@ -157,8 +161,15 @@
     0 -1px var(--stroke-color), 1px 0 var(--stroke-color);
 }
 
+.like-icon {
+  fill: var(--bg-color);
+  inline-size: 39px;
+  block-size: 36px;
+}
+
 .card__content {
   border: 2px solid var(--border-color);
+  border-top: 0;
   padding: 25px;
 }
 
@@ -169,13 +180,13 @@
   justify-content: flex-end;
 }
 
-.card__icon-button:focus,
-.card__icon-button:focus-visible {
+.card__icon-button:focus {
   outline: none;
 }
 
 .card__icon-button:focus-visible {
   border-color: var(--accent-color);
+  outline: none;
 }
 
 .card__content-text {
@@ -185,36 +196,28 @@
   line-height: 21px;
   font-weight: var(--text-weight);
   font-variation-settings: 'wght' var(--text-weight);
+  margin-block-end: 25px;
 }
+
+/*Я же могу не отказываться от 27px,
+ просто переопределю отступ только для первого параграфа
+*/
 
 .card__content-text:nth-child(1) {
   margin-block-end: 27px;
 }
 
-.card__content-text:nth-child(2) {
-  margin-block-end: 25px;
+.button {
+  background-color: var(--bg-color);
+  border: 2px solid var(--border-color);
+  position: relative;
+  cursor: pointer;
 }
 
 .card__like-button {
-  border: 2px solid var(--border-color);
   padding: 9px 17px;
-  background-color: var(--bg-color);
-  justify-content: center;
-  align-items: center;
   block-size: 38px;
   inline-size: 130px;
-  position: relative;
-}
-
-.card__like-button:focus-visible,
-.card__like-button:focus,
-.button-remember:focus-visible,
-.button-remember:focus {
-  outline: none;
-}
-
-.card__like-button:hover::before {
-  width: 100%;
 }
 
 .card__like-button::before {
@@ -230,10 +233,6 @@
   width: 0;
 }
 
-.card__like-button:hover {
-  cursor: pointer;
-}
-
 .button__text {
   font-size: 14px;
   font-family: var(--accent-font), sans-serif;
@@ -244,18 +243,8 @@
   line-height: 12.6px;
 }
 
-.button__text-rembemer {
-  font-size: 14px;
-  font-family: var(--accent-font), sans-serif;
-  color: var(--mix-blend-color);
-  mix-blend-mode: difference;
-  font-weight: 400;
-  font-style: normal;
-  line-height: 12.6px;
-}
-
 .floppy {
-  fill: var(--mix-blend-color);
+  /*fill: var(--mix-blend-color);*/
   inline-size: 28px;
   block-size: 28px;
   stroke: var(--mix-blend-color);
@@ -264,37 +253,23 @@
 
 .button-remember {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 12.6px;
   padding: 15px 20px;
-  border: 2px solid var(--border-color);
-  background-color: var(--bg-color);
-  cursor: pointer;
-  position: relative;
 }
 
-.button-remember:focus-visible,
-.card__like-button:focus-visible,
-.button-save:focus-visible {
+.button:focus-visible {
   box-shadow: 2px 2px 0 0px var(--border-color);
   transition: box-shadow 0.3s ease;
 }
 
-.button {
+.bottom {
   display: flex;
   justify-content: center;
   align-items: center;
   padding-block-end: 100px;
   padding-inline: 30px;
-}
-
-.button-remember:hover::before {
-  width: 100%;
 }
 
 .button-remember::before {
@@ -325,13 +300,21 @@
 
 .theme-menu__button:focus-visible,
 .theme-menu__button:focus,
-.button-save:focus,
-.button-save:focus-visible {
+.button:focus,
+.button:focus-visible {
   outline: none;
 }
 
+.theme-menu__button:focus-visible::after {
+  width: 100%;
+}
+
+.theme-menu__button:disabled {
+  pointer-events: none;
+}
+
 .dialog::backdrop {
-  background-color: rgba(0 0 0 / 0.8);
+  background-color: rgba(0 0 0 / 0.75);
 }
 
 .dialog {
@@ -366,26 +349,11 @@
 
 .button-save {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 8px;
   width: 100%;
   padding: 15px 20px;
-  border: 2px solid var(--border-color);
-  background-color: var(--bg-color);
-  cursor: pointer;
-  position: relative;
-  text-transform: uppercase;
-}
-
-.button-save-text {
-  font-family: var(--accent-font), sans-serif;
-  mix-blend-mode: difference;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 12.6px;
-  color: var(--mix-blend-color);
 }
 
 .card__icon-button {
@@ -412,15 +380,16 @@
   background-color: var(--accent-color);
 }
 
-.button-save:hover::before {
+.button:hover::before {
   width: 100%;
 }
 
 .floppy-dialog {
-  fill: var(--border-color);
+  /*fill: var(--border-color);*/
   block-size: 39px;
   inline-size: 39px;
-  stroke: var(--border-color);
+  stroke: var(--mix-blend-color-color);
+  mix-blend-mode: difference;
 }
 
 .dialog__flex-text {

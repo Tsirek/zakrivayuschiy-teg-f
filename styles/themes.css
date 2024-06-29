@@ -15,6 +15,7 @@
   --stroke-color: #000;
   --header-weight: 785;
   --text-weight: 465;
+  fill: #00cc14;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -33,7 +34,7 @@
 
 :root.theme-light {
   --border-color: #000;
-  --bg-color: #d3d3d3;
+  --bg-color: #fff;
   --linear-gradient-first: #e7e7e7;
   --linear-gradient-second: #1a1a1a;
   --accent-color: #000;
@@ -42,12 +43,13 @@
   --stroke-color: #fff;
   --header-weight: 700;
   --text-weight: 400;
+  fill: #fff;
 }
 
 @media (prefers-color-scheme: light) {
   :root {
     --border-color: #000;
-    --bg-color: #d3d3d3;
+    --bg-color: #fff;
     --linear-gradient-first: #e7e7e7;
     --mix-blend-color: #fff;
     --linear-gradient-second: #1a1a1a;
