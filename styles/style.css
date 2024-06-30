@@ -220,19 +220,6 @@
   inline-size: 130px;
 }
 
-.card__like-button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: block;
-  background-color: var(--accent-color);
-  transition: width 0.3s ease;
-  inline-size: 100%;
-  block-size: 100%;
-  width: 0;
-}
-
 .button__text {
   font-size: 14px;
   font-family: var(--accent-font), sans-serif;
@@ -244,7 +231,6 @@
 }
 
 .floppy {
-  /*fill: var(--mix-blend-color);*/
   inline-size: 28px;
   block-size: 28px;
   stroke: var(--mix-blend-color);
@@ -270,19 +256,6 @@
   align-items: center;
   padding-block-end: 100px;
   padding-inline: 30px;
-}
-
-.button-remember::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: block;
-  background-color: var(--accent-color);
-  transition: width 0.3s ease;
-  inline-size: 100%;
-  block-size: 100%;
-  width: 0;
 }
 
 .theme-menu__button {
@@ -367,7 +340,7 @@
   align-items: center;
 }
 
-.button-save::before {
+.button::before {
   content: '';
   top: 0;
   left: 0;
@@ -385,7 +358,6 @@
 }
 
 .floppy-dialog {
-  /*fill: var(--border-color);*/
   block-size: 39px;
   inline-size: 39px;
   stroke: var(--mix-blend-color-color);

@@ -117,11 +117,11 @@
 
 @keyframes scale {
   from {
-    scale: 0;
+    scale: 1;
   }
 
   to {
-    scale: 1;
+    scale: 1.5;
   }
 }
 
